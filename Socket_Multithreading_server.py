@@ -54,15 +54,24 @@ def threaded(c):
 
 def main():
 
-    host = ""
- 
+
     # reserve a port on your computer
     # in our case it is 12345 but it
     # can be anything
+
+    host = ""
     port = 12345
 
     # establish a socket
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    # Next bind to the port
+    # we have not typed any ip in the ip field
+    # instead we have inputted an empty string
+    # this makes the server listen to requests
+    # coming from other computers on the network 
+    s.bind((host, port))  
+    print ("socket binded to %s" %(port))
 
     # put the socket into listening mode
     s.listen(5)
@@ -80,6 +89,7 @@ def main():
 
             # Start a new thread and return its identifier
             start_new_thread(threaded, (c,))
+            
     s.close()
 
 if __name__ == "__main__":
