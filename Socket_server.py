@@ -49,6 +49,8 @@ def Server():
         # Breaking once connection closed
         break
 
+    s.close()
+
     '''
         1. First of all, we import socket which is necessary.
 
