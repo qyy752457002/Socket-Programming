@@ -12,6 +12,9 @@ def Server():
 
     # reserve a port on your computer in our
     # case it is 12345 but it can be anything
+
+    host = ''
+
     port = 12345     
 
     # Next bind to the port
@@ -19,7 +22,7 @@ def Server():
     # instead we have inputted an empty string
     # this makes the server listen to requests
     # coming from other computers on the network 
-    s.bind(('', port))  
+    s.bind((host, port))  
     print ("socket binded to %s" %(port))
 
     # 5 here means that 5 connections are kept waiting if the server is busy and if a 6th socket tries to connect then the connection is refused.
@@ -31,6 +34,9 @@ def Server():
     while True:
 
         # Establish connection with client.
+        ''' IMPORTANT: Why does accept () return a new socket c?
+            Because the initial socket is used to wait for communication while the second is used to communicate'''
+        
         c, addr = s.accept()    
         print ('Got connection from', addr)
         
